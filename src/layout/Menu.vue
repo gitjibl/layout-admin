@@ -33,10 +33,12 @@
       <template v-if="!route.hidden">
         <template v-if="route.children && route.children.length>0 && !route.isLevelOne">
           <el-submenu :index="route.path" :key="index">
-            <template slot="title">
+            <template v-if="route.meta && !route.meta.imgUrl" slot="title">
               <i :class="route.meta && route.meta.icon"></i>
               <span slot="title">{{route.meta.title}}</span>
-              <!-- <el-image :src="require('@/assets/imgs/user.gif')" style="height:60px;width:60px"></el-image> -->
+            </template>
+            <template v-else slot="title">
+              <el-image :src="route.meta.imgUrl" style="height:60px;width:60px"></el-image>
             </template>
             <MenuItemGroup v-for="(e,i) in route.children" :key="i" :item="e" :base-path="route.path">
             </MenuItemGroup>
@@ -44,28 +46,29 @@
         </template>
         <!---isLevelOne--->
         <template v-else-if="route.children && route.isLevelOne">
-          <!-- <div :key="index" style="float: left;height:60px;">
-              <MenuItemGroup :key="index" :item="route.children[0]" :base-path="route.path">
-              </MenuItemGroup>
-          </div> -->
-          <el-menu-item :key="index" :index="resolvePath(route.path,route.children[0].path)" style="height:60px;">
+          <el-menu-item :key="index" :index="resolvePath(route.path,route.children[0].path)">
             <app-link :to="resolvePath(route.path,route.children[0].path)" style="display:block;">
-              <item v-if="route.children[0].meta" :icon="route.children[0].meta && route.children[0].meta.icon"
-                :title="route.children[0].meta.title" />
-              <!-- <el-image :src="require('@/assets/imgs/user.gif')" style="height:60px;width:60px"></el-image> -->
+              <template v-if="route.children[0].meta && !route.children[0].meta.imgUrl">
+                <item v-if="route.children[0].meta" :icon="route.children[0].meta && route.children[0].meta.icon"
+                  :title="route.children[0].meta.title" />
+              </template>
+              <template v-else>
+                <el-image :src="route.children[0].meta.imgUrl" style="height:60px;width:60px"></el-image>
+              </template>
             </app-link>
           </el-menu-item>
 
         </template>
         <!---a标签--->
         <template v-else>
-          <!-- <div :key="index" style="float: left;height:60px;">
-            <MenuItemGroup :key="index" :item="route" :base-path="route.path">
-            </MenuItemGroup>
-          </div> -->
           <el-menu-item :key="index" :index="resolvePath(route.path,'')">
             <app-link :to="resolvePath(route.path,'')" style="display:block;">
-              <item v-if="route.meta" :icon="route.meta && route.meta.icon" :title="route.meta.title" />
+              <template v-if="route.meta && !route.meta.imgUrl">
+                <item v-if="route.meta" :icon="route.meta && route.meta.icon" :title="route.meta.title" />
+              </template>
+              <template v-else>
+                <el-image :src="route.meta.imgUrl" style="height:60px;width:70px"></el-image>
+              </template>
             </app-link>
           </el-menu-item>
         </template>
@@ -127,7 +130,7 @@
       };
     },
     mounted() {
-      console.log("routes列表", this.routes)
+      console.log("routes列表", this.routes, this.$router, this.$route)
     },
     components: {
       AppLink,

@@ -9,6 +9,7 @@ import EmptyLayout from '@/layout/EmptyLayout'
     //roles: ['admin', 'editor'] //设置该路由进入的权限，支持多个权限叠加
     hidden: true,
     title: 'title' //设置该路由在侧边栏和面包屑中展示的名字
+    imgUrl:"" //一级菜单图片路径 (代替icon)
     icon: 'svg-name' //设置该路由的图标
     noCache: true //如果设置为true，则不会被 <keep-alive> 缓存(默认 false)
     affix:false //tag是否隐藏关闭 默认false（显示关闭icon）、
@@ -42,6 +43,7 @@ const constantRoutes = [
       meta: {
         title: '控制台',
         icon: 'el-icon-s-home',
+        // imgUrl:require('@/assets/imgs/zwgl.png'),
         affix: true
       }
     }]
@@ -52,7 +54,8 @@ const constantRoutes = [
     component: Layout,
     meta: {
       title: '测试页面',
-      icon: 'el-icon-s-help'
+      icon: 'el-icon-s-help',
+      // imgUrl: require('@/assets/imgs/user.gif'),
     },
     children: [{
       path: 'level2',
@@ -62,11 +65,18 @@ const constantRoutes = [
         title: 'Level2'
       },
       children: [{
-        path: 'level3',
-        name: 'Level3',
+        path: 'level3-1',
+        name: 'Level3-1',
         component: resolve => require(['@/views/level/level3'], resolve),
         meta: {
-          title: 'Level3'
+          title: 'Level3-1'
+        }
+      }, {
+        path: 'level3-2',
+        name: 'level3-2',
+        component: resolve => require(['@/views/level/level3'], resolve),
+        meta: {
+          title: 'level3-2'
         }
       }]
     }, {
@@ -83,8 +93,7 @@ const constantRoutes = [
       meta: {
         title: '表单'
       },
-    },
-   ]
+    }, ]
   },
   {
     path: '/error',
@@ -119,7 +128,8 @@ const constantRoutes = [
     name: 'a便签测试',
     meta: {
       title: 'a便签测试',
-      icon: 'el-icon-s-promotion'
+      icon: 'el-icon-s-promotion',
+      // imgUrl:require('@/assets/imgs/user.gif'),
     },
   },
 
@@ -134,6 +144,7 @@ const constantRoutes = [
       component: () => import('@/views/level/level1'),
       meta: {
         title: 'Level1',
+        // imgUrl:require('@/assets/imgs/zwgl.png'),
         icon: 'el-icon-s-data'
       }
     }]
