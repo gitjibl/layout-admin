@@ -67,7 +67,7 @@
                 <item v-if="route.meta" :icon="route.meta && route.meta.icon" :title="route.meta.title" />
               </template>
               <template v-else>
-                <el-image :src="route.meta.imgUrl" style="height:60px;width:70px"></el-image>
+                <el-image :src="route.meta.imgUrl" style="height:60px;width:60px"></el-image>
               </template>
             </app-link>
           </el-menu-item>
