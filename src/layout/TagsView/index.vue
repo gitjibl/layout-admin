@@ -306,7 +306,7 @@ export default {
         border-color: #0a8de6;
         &::before {
           content: "";
-          background: #fff;
+          background: rgb(255, 255, 255);
           display: inline-block;
           width: 10px;
           height: 8px;
