@@ -55,7 +55,7 @@ const constantRoutes = [
     meta: {
       title: '测试页面',
       icon: 'el-icon-s-help',
-      // imgUrl: require('@/assets/imgs/user.gif'),
+      // imgUrl:require('@/assets/imgs/zwgl.png'),
     },
     children: [{
       path: 'level2',

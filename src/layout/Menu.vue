@@ -186,4 +186,8 @@
   .el-menu-item {
     padding: 0 10px;
   }
+
+  /* ::v-deep .el-icon-arrow-down:before {
+    content: "";
+  } */
 </style>
