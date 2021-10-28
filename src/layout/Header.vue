@@ -191,9 +191,9 @@
     margin-left: 5px;
   }
 
-  /* .user-avator {
-    margin-top: 3px;
-  } */
+  .user-avator {
+    margin-top: 5px;
+  }
 
   .user-avator img {
     width: 30px;
