@@ -18,6 +18,9 @@
                 };
                 this.goRefreshCachedView(view)
             },
+            /**
+             * 跳转需要重新刷新的缓存页面
+             */
             goRefreshCachedView(view) {
                 let flag = this.visitedViews.filter(e => {
                     return e.name == view.name
