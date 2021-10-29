@@ -67,14 +67,14 @@ const constantRoutes = [
       children: [{
         path: 'level3-1',
         name: 'Level3-1',
-        component: resolve => require(['@/views/level/level3'], resolve),
+        component: () => import('@/views/level/level3'),
         meta: {
           title: 'Level3-1'
         }
       }, {
         path: 'level3-2',
         name: 'level3-2',
-        component: resolve => require(['@/views/level/level3'], resolve),
+        component: () => import('@/views/level/level3'),
         meta: {
           title: 'level3-2'
         }
@@ -82,14 +82,14 @@ const constantRoutes = [
     }, {
       path: 'showimg',
       name: 'Showimg',
-      component: resolve => require(['@/views/showimg'], resolve),
+      component: () => import('@/views/showimg'),
       meta: {
         title: '头像'
       }
     }, {
       path: 'baseform',
       name: 'Baseform',
-      component: resolve => require(['@/views/baseform/baseform'], resolve),
+      component: () => import('@/views/baseform/baseform'),
       meta: {
         title: '表单'
       },

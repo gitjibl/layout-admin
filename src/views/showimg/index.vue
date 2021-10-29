@@ -19,7 +19,8 @@
       this.val = this.$route.params.userId;
     },
     mounted() {
-       alert("mounted....")
+      alert(process.env.VUE_APP_BASEURL_API)
+      //  console.log("process.env.VUE_APP_BASEURL_API",process.env.NODE_ENV,process.env.VUE_APP_BASEURL_API)
     }
   }
 </script>
