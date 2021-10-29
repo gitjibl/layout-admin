@@ -107,7 +107,7 @@ const constantRoutes = [
     children: [{
         path: '401',
         name: 'Error401',
-        hidden: true,
+        // hidden: true,
         component: () => import('@/views/error/401'),
         meta: {
           title: '401'
