@@ -1,19 +1,43 @@
 <template>
-   <div>
-       <h1>this is baseform</h1>
-       <button @click="toImage">to img</button>
-   </div>
+    <div>
+        <h1>this is baseform</h1>
+        <button @click="toImage">to img</button>
+    </div>
 </template>
 <script>
-export default {
-    name:"Baseform",
-    methods:{
-        toImage(){
-            this.$router.push({ name: 'showimg', params: { userId: 123 }})
-        }
-    },
-    mounted(){
-       
+    export default {
+        name: "Baseform",
+        methods: {
+            toImage() {
+                console.log("visitedViews.....", this.visitedViews)
+                let view = {
+                    name: 'Showimg',
+                    params: {
+                        userId: 123
+                    }
+                };
+                this.goRefreshCachedView(view)
+            },
+            goRefreshCachedView(view) {
+                let flag = this.visitedViews.filter(e => {
+                    return e.name == view.name
+                });
+                if (flag.length == 0) {
+                    this.$router.replace(view)
+                } else {
+                    this.$store.dispatch("tagsView/delCachedView", view).then(() => {
+                        this.$nextTick(() => {
+                            this.$router.replace(view)
+                        });
+                    });
+                }
+            },
+        },
+        computed: {
+            visitedViews() {
+                return this.$store.state.tagsView.visitedViews;
+            },
+        },
+        mounted() {}
     }
-}
 </script>

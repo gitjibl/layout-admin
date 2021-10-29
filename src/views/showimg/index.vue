@@ -19,7 +19,7 @@
       this.val = this.$route.params.userId;
     },
     mounted() {
-       alert(1)
+       alert("mounted....")
     }
   }
 </script>
