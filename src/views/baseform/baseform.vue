@@ -40,6 +40,9 @@
             visitedViews() {
                 return this.$store.state.tagsView.visitedViews;
             },
+            cachedViews() {
+                return this.$store.state.tagsView.cachedViews
+            },
         },
         mounted() {}
     }
