@@ -89,44 +89,44 @@
   export default {
     data() {
       return {
-        menuItems: [{
-            icon: "el-icon-s-home",
-            index: "dashboard",
-            title: "首页"
-          },
-          {
-            icon: "el-icon-question",
-            index: "baseform",
-            title: "测试页面",
-            subs: [{
-                index: "baseform",
-                title: "表单"
-              },
-              {
-                index: "2-1",
-                title: "图片",
-                subs: [{
-                  index: "showimg",
-                  title: "头像"
-                }]
-              }
-            ]
-          },
-          {
-            icon: "el-icon-info",
-            index: "error",
-            title: "错误页面",
-            subs: [{
-                index: "/error/401",
-                title: "401"
-              },
-              {
-                index: "/error/404",
-                title: "404"
-              }
-            ]
-          },
-        ]
+        // menuItems: [{
+        //     icon: "el-icon-s-home",
+        //     index: "dashboard",
+        //     title: "首页"
+        //   },
+        //   {
+        //     icon: "el-icon-question",
+        //     index: "baseform",
+        //     title: "测试页面",
+        //     subs: [{
+        //         index: "baseform",
+        //         title: "表单"
+        //       },
+        //       {
+        //         index: "2-1",
+        //         title: "图片",
+        //         subs: [{
+        //           index: "showimg",
+        //           title: "头像"
+        //         }]
+        //       }
+        //     ]
+        //   },
+        //   {
+        //     icon: "el-icon-info",
+        //     index: "error",
+        //     title: "错误页面",
+        //     subs: [{
+        //         index: "/error/401",
+        //         title: "401"
+        //       },
+        //       {
+        //         index: "/error/404",
+        //         title: "404"
+        //       }
+        //     ]
+        //   },
+        // ]
       };
     },
     mounted() {
