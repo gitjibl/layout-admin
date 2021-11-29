@@ -43,7 +43,7 @@ const constantRoutes = [
       meta: {
         title: '控制台',
         icon: 'el-icon-s-home',
-        // imgUrl:require('@/assets/imgs/zwgl.png'),
+        imgUrl:require('@/assets/imgs/home.png'),
         affix: true
       }
     }]

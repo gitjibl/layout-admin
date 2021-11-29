@@ -251,8 +251,8 @@ export default {
       if (oldViews.length > 0) {
         this.$store.state.tagsView.visitedViews = oldViews;
       }
-      // let visitedViews = this.$store.state.tagsView.visitedViews;
-      // console.log("监听页面刷新", visitedViews);
+      let visitedViews = this.$store.state.tagsView.visitedViews;
+      console.log("监听页面刷新-游览过页面", visitedViews);
     },
     ssologin(){
       console.log("this.$cookies",this.$cookies.get("token"))

@@ -130,7 +130,7 @@
       };
     },
     mounted() {
-      console.log("routes列表", this.routes, this.$router, this.$route)
+      // console.log("routes列表", this.routes, this.$router, this.$route)
     },
     components: {
       AppLink,
