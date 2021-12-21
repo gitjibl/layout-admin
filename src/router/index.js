@@ -4,7 +4,6 @@ import EmptyLayout from '@/layout/EmptyLayout'
 /*
   name: 'router-name' //设定路由的名字，一定要填写不然使用<keep-alive>时会出现各种问题
   hidden: true // (默认 false) 当设置 true 的时候该路由不会在侧边栏出现 如401
-  isLevelOne:true //(默认 false) 显示一级菜单
   meta: {
     //roles: ['admin', 'editor'] //设置该路由进入的权限，支持多个权限叠加
     hidden: true,
@@ -34,7 +33,6 @@ const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    isLevelOne: true,
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
@@ -43,7 +41,7 @@ const constantRoutes = [
       meta: {
         title: '控制台',
         icon: 'el-icon-s-home',
-        imgUrl:require('@/assets/imgs/home.png'),
+        imgUrl: require('@/assets/imgs/home.png'),
         affix: true
       }
     }]
@@ -55,7 +53,7 @@ const constantRoutes = [
     meta: {
       title: '测试页面',
       icon: 'el-icon-s-help',
-      // imgUrl:require('@/assets/imgs/zwgl.png'),
+      // imgUrl:require('@/assets/imgs/home.png'),
     },
     children: [{
       path: 'level2',
@@ -107,10 +105,11 @@ const constantRoutes = [
     children: [{
         path: '401',
         name: 'Error401',
-        // hidden: true,
+        hidden: true,
         component: () => import('@/views/error/401'),
         meta: {
-          title: '401'
+          title: 'page401',
+          // icon: 'el-icon-warning'
         },
       },
       {
@@ -118,26 +117,33 @@ const constantRoutes = [
         name: 'Error404',
         component: () => import('@/views/error/404'),
         meta: {
-          title: '404'
+          title: 'page404',
+          // icon: 'el-icon-warning'
         },
       },
+      // {
+      //   path: 'https://www.baidu.com/',
+      //   meta: { title: 'External Link'}
+      // }
     ],
   },
+
   {
-    path: 'https://www.baidu.com/',
-    name: 'a便签测试',
-    meta: {
-      title: 'a便签测试',
-      icon: 'el-icon-s-promotion',
-      // imgUrl:require('@/assets/imgs/user.gif'),
-    },
+    path: 'external-link',
+    component: Layout,
+    children: [{
+      path: 'https://www.baidu.com/',
+      meta: {
+        title: 'External Link',
+        icon: 'el-icon-s-promotion'
+      }
+    }]
   },
 
   {
     path: '/level1',
     name: 'Level1',
     component: Layout,
-    isLevelOne: true,
     children: [{
       path: 'index',
       name: 'index',

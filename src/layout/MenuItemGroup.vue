@@ -1,7 +1,7 @@
 <!--2 3级... 菜单递归-->
 <template>
     <div v-if="!item.hidden" style="height:100%">
-        <div v-if="item.children && item.children.length>0 && !item.isLevelOne">
+        <div v-if="item.children && item.children.length>0 ">
             <el-submenu :index="resolvePath(item.path)">
                 <template slot="title">
                     <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />

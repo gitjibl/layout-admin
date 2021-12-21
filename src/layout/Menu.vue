@@ -31,47 +31,44 @@
     <!--1级菜单-->
     <template v-for="(route,index) in routes">
       <template v-if="!route.hidden">
-        <template v-if="route.children && route.children.length>0 && !route.isLevelOne">
-          <el-submenu :index="route.path" :key="index">
-            <template v-if="route.meta && !route.meta.imgUrl" slot="title">
-              <i :class="route.meta && route.meta.icon"></i>
-              <span slot="title">{{route.meta.title}}</span>
+        
+        <el-menu-item v-if="route.children && route.children.length == 1" :key="index"
+          :index="resolvePath(route.path,route.children[0].path)">
+          <app-link :to="resolvePath(route.path,route.children[0].path)" style="display:block;">
+            <template v-if="route.children[0].meta && !route.children[0].meta.imgUrl">
+              <item v-if="route.children[0].meta" :icon="route.children[0].meta && route.children[0].meta.icon"
+                :title="route.children[0].meta.title" />
             </template>
-            <template v-else slot="title">
-              <el-image :src="route.meta.imgUrl" style="height:60px;width:60px"></el-image>
+            <template v-else>
+              <el-image :src="route.children[0].meta.imgUrl" style="height:60px;width:60px"></el-image>
             </template>
-            <MenuItemGroup v-for="(e,i) in route.children" :key="i" :item="e" :base-path="route.path">
-            </MenuItemGroup>
-          </el-submenu>
-        </template>
-        <!---isLevelOne--->
-        <template v-else-if="route.children && route.isLevelOne">
-          <el-menu-item :key="index" :index="resolvePath(route.path,route.children[0].path)">
-            <app-link :to="resolvePath(route.path,route.children[0].path)" style="display:block;">
-              <template v-if="route.children[0].meta && !route.children[0].meta.imgUrl">
-                <item v-if="route.children[0].meta" :icon="route.children[0].meta && route.children[0].meta.icon"
-                  :title="route.children[0].meta.title" />
-              </template>
-              <template v-else>
-                <el-image :src="route.children[0].meta.imgUrl" style="height:60px;width:60px"></el-image>
-              </template>
-            </app-link>
-          </el-menu-item>
+          </app-link>
+        </el-menu-item>
 
-        </template>
-        <!---a标签--->
-        <template v-else>
-          <el-menu-item :key="index" :index="resolvePath(route.path,'')">
-            <app-link :to="resolvePath(route.path,'')" style="display:block;">
-              <template v-if="route.meta && !route.meta.imgUrl">
-                <item v-if="route.meta" :icon="route.meta && route.meta.icon" :title="route.meta.title" />
-              </template>
-              <template v-else>
-                <el-image :src="route.meta.imgUrl" style="height:60px;width:60px"></el-image>
-              </template>
-            </app-link>
-          </el-menu-item>
-        </template>
+        <!-- <el-menu-item v-if="hasOneShowingChild(route.children,route)" :key="index"
+          :index="resolvePath(route.path,onlyOneChild.path)">
+          <app-link :to="resolvePath(route.path,onlyOneChild.path)" style="display:block;">
+            <template v-if="onlyOneChild.meta && !onlyOneChild.meta.imgUrl">
+              <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta && onlyOneChild.meta.icon"
+                :title="onlyOneChild.meta.title" />
+            </template>
+            <template v-else>
+              <el-image :src="onlyOneChild.meta.imgUrl" style="height:60px;width:60px"></el-image>
+            </template>
+          </app-link>
+        </el-menu-item> -->
+
+        <el-submenu :index="route.path" :key="index" v-else>
+          <template v-if="route.meta && !route.meta.imgUrl" slot="title">
+            <i :class="route.meta && route.meta.icon"></i>
+            <span slot="title">{{route.meta.title}}</span>
+          </template>
+          <template v-else slot="title">
+            <el-image :src="route.meta.imgUrl" style="height:60px;width:60px"></el-image>
+          </template>
+          <MenuItemGroup v-for="(e,i) in route.children" :key="i" :item="e" :base-path="route.path">
+          </MenuItemGroup>
+        </el-submenu>
       </template>
     </template>
   </el-menu>
@@ -88,7 +85,9 @@
   } from '@/utils/validate'
   export default {
     data() {
+      this.onlyOneChild = null
       return {
+        // onlyOneChild: null
         // menuItems: [{
         //     icon: "el-icon-s-home",
         //     index: "dashboard",
@@ -154,6 +153,35 @@
       },
     },
     methods: {
+      hasOneShowingChild(children = [], parent) {
+        debugger
+        const showingChildren = children.filter(item => {
+          if (item.hidden) {
+            return false
+          } else {
+            // Temp set(will be used if only has one showing child)
+            this.onlyOneChild = item
+            return true
+          }
+        })
+
+        // When there is only one child router, the child router is displayed by default
+        if (showingChildren.length === 1) {
+          return true
+        }
+
+        // Show parent if there are no child router to display
+        if (showingChildren.length === 0) {
+          this.onlyOneChild = {
+            ...parent,
+            path: '',
+            noShowingChildren: true
+          }
+          return true
+        }
+
+        return false
+      },
       resolvePath(basePath, routePath) {
         if (isExternal(routePath)) {
           return routePath
