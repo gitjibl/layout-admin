@@ -147,7 +147,7 @@
 
   .header-right {
     float: right;
-    padding-right: 50px;
+    padding-right: 20px;
   }
 
   .header-user-con {
