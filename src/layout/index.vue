@@ -15,7 +15,7 @@
 </template>
 <script>
   import vHead from "./Header.vue";
-  import TagsView from '@/layout/TagsView'
+  import TagsView from '@/layout/TagsView/TabsView'
   export default {
     name: 'index',
     computed: {

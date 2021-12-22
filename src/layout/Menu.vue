@@ -31,7 +31,7 @@
     <!--1级菜单-->
     <template v-for="(route,index) in routes">
       <template v-if="!route.hidden">
-        
+
         <el-menu-item v-if="route.children && route.children.length == 1" :key="index"
           :index="resolvePath(route.path,route.children[0].path)">
           <app-link :to="resolvePath(route.path,route.children[0].path)" style="display:block;">
@@ -85,7 +85,7 @@
   } from '@/utils/validate'
   export default {
     data() {
-      this.onlyOneChild = null
+      // this.onlyOneChild = null
       return {
         // onlyOneChild: null
         // menuItems: [{
