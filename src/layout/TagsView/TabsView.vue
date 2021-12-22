@@ -308,7 +308,7 @@ export default {
           content: "";
           background: rgb(255, 255, 255);
           display: inline-block;
-          width: 10px;
+          width: 9px;
           height: 8px;
           border-radius: 50%;
           position: relative;
