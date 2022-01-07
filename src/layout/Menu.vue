@@ -1,6 +1,6 @@
 <template>
-  <el-menu style="width:100%" class="el-menu-demo" :default-active="activeMenu" background-color="rgb(10, 141, 230)"
-    text-color="#fff" active-text-color="#ffd04b" mode="horizontal" unique-opened>
+  <el-menu style="width:100%" class="el-menu-demo" :default-active="activeMenu" background-color="#095a91"
+    text-color="#fff" active-text-color="rgb(21 209 113)" mode="horizontal" unique-opened>
     <!--手动定义菜单-->
     <!-- <template v-for="item in menuItems">
       <template v-if="item.subs">
@@ -44,19 +44,6 @@
             </template>
           </app-link>
         </el-menu-item>
-
-        <!-- <el-menu-item v-if="hasOneShowingChild(route.children,route)" :key="index"
-          :index="resolvePath(route.path,onlyOneChild.path)">
-          <app-link :to="resolvePath(route.path,onlyOneChild.path)" style="display:block;">
-            <template v-if="onlyOneChild.meta && !onlyOneChild.meta.imgUrl">
-              <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta && onlyOneChild.meta.icon"
-                :title="onlyOneChild.meta.title" />
-            </template>
-            <template v-else>
-              <el-image :src="onlyOneChild.meta.imgUrl" style="height:60px;width:60px"></el-image>
-            </template>
-          </app-link>
-        </el-menu-item> -->
 
         <el-submenu :index="route.path" :key="index" v-else>
           <template v-if="route.meta && !route.meta.imgUrl" slot="title">
@@ -153,35 +140,6 @@
       },
     },
     methods: {
-      hasOneShowingChild(children = [], parent) {
-        debugger
-        const showingChildren = children.filter(item => {
-          if (item.hidden) {
-            return false
-          } else {
-            // Temp set(will be used if only has one showing child)
-            this.onlyOneChild = item
-            return true
-          }
-        })
-
-        // When there is only one child router, the child router is displayed by default
-        if (showingChildren.length === 1) {
-          return true
-        }
-
-        // Show parent if there are no child router to display
-        if (showingChildren.length === 0) {
-          this.onlyOneChild = {
-            ...parent,
-            path: '',
-            noShowingChildren: true
-          }
-          return true
-        }
-
-        return false
-      },
       resolvePath(basePath, routePath) {
         if (isExternal(routePath)) {
           return routePath
