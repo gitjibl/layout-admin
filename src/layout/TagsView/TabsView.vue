@@ -58,9 +58,10 @@ export default {
     visitedViews() {
       return this.$store.state.tagsView.visitedViews;
     },
-    // routes() {
-    //   return this.$store.state.permission.routes;
-    // },
+    routes() {
+      return this.$store.state.permission.routes;
+      // return this.$router.options.routes;
+    },
     cachedViews() {
       return this.$store.state.tagsView.cachedViews;
     },
@@ -113,14 +114,13 @@ export default {
       return tags;
     },
     initTags() {
-      console.log("路由列表/缓存/浏览",this.$router.options.routes,this.cachedViews,this.visitedViews);
-      const affixTags = (this.affixTags = this.filterAffixTags(
-        this.$router.options.routes
-      ));
+      console.log("路由列表/缓存/浏览",this.$router.options.routes,this.cachedViews,this.visitedViews,this.routes);
+      const affixTags = this.affixTags = this.filterAffixTags(this.routes)
+      // debugger
       for (const tag of affixTags) {
         // Must have tag name
         if (tag.name) {
-          this.$store.dispatch("tagsView/addVisitedView", tag);
+          this.$store.dispatch('tagsView/addVisitedView', tag)
         }
       }
     },

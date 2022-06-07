@@ -9,6 +9,7 @@
     "build-prod": "vue-cli-service build --mode prod"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.5",
     "nprogress": "^0.2.0",

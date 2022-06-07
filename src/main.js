@@ -6,7 +6,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import VueCookies from 'vue-cookies'
 import './config/permission' // permission control
+import "@/utils/sso-login";
+import axios from 'axios'
 
+Vue.prototype.$axios = axios
 Vue.use(VueCookies)
 Vue.use(ElementUI, {
   size: 'mini'
